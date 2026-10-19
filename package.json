@@ -1,0 +1,23 @@
+{
+  "name": "prostir",
+  "private": true,
+  "version": "0.2.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "concurrently -k \"npm run dev -w @prostir/api\" \"npm run dev -w @prostir/web\"",
+    "build": "npm run build -w @prostir/contracts && npm run build -w @prostir/api && npm run build -w @prostir/web",
+    "typecheck": "npm run build -w @prostir/contracts && npm run typecheck --workspaces --if-present",
+    "test": "npm run test -w @prostir/api"
+  },
+  "devDependencies": {
+    "concurrently": "10.0.6",
+    "typescript": "7.0.2",
+    "@types/node": "26.6.5"
+  }
+}
