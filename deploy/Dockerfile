@@ -10,7 +10,7 @@ RUN npm run build
 
 FROM node:24-alpine AS api
 WORKDIR /app
-ENV NODE_ENV=production HOST=0.0.0.0 PORT=3001
+ENV NODE_ENV=production HOST=0.0.0.0 PORT=3003
 COPY --from=build /app/package*.json ./
 COPY --from=build /app/apps/api/package.json apps/api/
 COPY --from=build /app/apps/web/package.json apps/web/
@@ -19,7 +19,7 @@ RUN npm ci --omit=dev --ignore-scripts
 COPY --from=build /app/apps/api/dist apps/api/dist
 COPY --from=build /app/packages/contracts/dist packages/contracts/dist
 USER node
-EXPOSE 3001
+EXPOSE 3003
 CMD ["node","apps/api/dist/main.js"]
 
 FROM nginx:stable-alpine AS web

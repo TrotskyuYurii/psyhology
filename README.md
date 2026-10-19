@@ -54,7 +54,7 @@ Backend перевіряє повноту відповідей та застос
 docker compose up -d --build
 ```
 
-В aaPanel налаштуйте HTTPS-сайт із reverse proxy на http://127.0.0.1:8080. Nginx у контейнері обслуговує React і проксіює /api до NestJS. Backend і MongoDB не публікують порти на хост. У production MONGODB_URI обов’язкова.
+В aaPanel налаштуйте HTTPS-сайт із reverse proxy на http://127.0.0.1:8080. Nginx у контейнері обслуговує React і проксіює /api до NestJS. Backend і MongoDB не публікують порти на хост. У production MONGODB_URI обов’язкова. Production API слухає порт 3003 усередині Docker-мережі; Nginx передає /api до api:3003. Локальна розробка використовує порт 3001.
 
 Конфігурація є основою розгортання прототипу. Перед зберіганням персональних даних потрібні автентифікація MongoDB, резервні копії, політика доступу та авторизація користувачів. Не використовуйте `docker compose down -v`, якщо потрібно зберегти базу.
 
