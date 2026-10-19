@@ -25,7 +25,7 @@ class ApiController {
     if (process.env.MONGODB_URI && mongoose.connection.readyState !== 1) {
       throw new ServiceUnavailableException('MongoDB недоступна.');
     }
-    return { status: 'ok', database: process.env.MONGODB_URI ? 'connected' : 'demo' };
+    return { status: 'ok', database: process.env.MONGODB_URI ? 'connected' : 'demo', version: '0.2.1' };
   }
   @Get('tests')
   async catalog() {
